@@ -38,3 +38,5 @@ npm run build:types
 
 [rollup-plugin-visualizer](https://github.com/btd/rollup-plugin-visualizer)
 >可视化并分析您的Rollup捆绑包，以查看哪些模块占用了空间
+
+<!-- https://www.typescriptlang.org/zh/tsconfig -->
