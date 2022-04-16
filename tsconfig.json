@@ -15,7 +15,8 @@
       "@/*": ["./src/*"],
       "components/*": ["./src/components/*"],
       "api/*": ["./src/api/*"]
-    }
+    },
+    "typeRoots": ["./types"]
   },
-  "include": ["././src/**/*.ts", "src/**/*.d.ts", "./src/**/**/*.d.ts", "./src/**/*.tsx", "./types/*.d.ts", "./src/**/*.vue"]
+  "include": ["./src/**/*.ts", "./src/**/*.d.ts", "./src/**/**/*.d.ts", "./src/**/*.tsx", "./types/*.d.ts", "./src/**/*.vue"]
 }

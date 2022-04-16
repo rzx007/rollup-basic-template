@@ -1,6 +1,7 @@
 import rollupTypescript from 'rollup-plugin-typescript2'
 import commonjs from 'rollup-plugin-commonjs'
 import alias from '@rollup/plugin-alias'
+import copy from 'rollup-plugin-copy'
 
 import { devConfig } from './build/roolup.config.dev'
 import { proConfig } from './build/roolup.config.pro'
@@ -32,6 +33,9 @@ let config = {
   plugins: [
     commonjs(),
     rollupTypescript(),
+    copy({
+      targets: [{ src: 'types/', dest: 'dist/' }] // 将声明文件复制到dist中
+    }),
     alias({
       entries: [
         { find: '@', replacement: resolveDir('src') }

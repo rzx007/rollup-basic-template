@@ -2,4 +2,8 @@ const aa: { [x: string]: any } = {
   name: 'rzx',
   age: 12
 }
-export { aa }
+
+const person: Iitem = {
+  username: 'zth'
+}
+export { aa, person }
