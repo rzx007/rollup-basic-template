@@ -1,0 +1,45 @@
+import rollupTypescript from 'rollup-plugin-typescript2'
+import commonjs from 'rollup-plugin-commonjs'
+import alias from '@rollup/plugin-alias'
+
+import { devConfig } from './build/roolup.config.dev'
+import { proConfig } from './build/roolup.config.pro'
+
+const env = process.env.NODE_ENV // umd 模式的编译结果文件输出的全局变量名称 
+console.log(env);
+import path from 'path'
+const resolveDir = dir => path.join(__dirname, dir)
+
+let config = {
+  input: "./src/main.js",
+  output: [
+    {
+      file: './dist/index.umd.js',
+      format: 'umd',
+      name: 'zth-canvas'
+      //当入口文件有export时，'umd'格式必须指定name
+      //这样，在通过<script>标签引入时，才能通过name访问到export的内容。
+    },
+    {
+      file: './dist/index.esm.js',
+      format: 'es'
+    },
+    {
+      file: './dist/index.cjs.js',
+      format: 'cjs'
+    }
+  ],
+  plugins: [
+    commonjs(),
+    rollupTypescript(),
+    alias({
+      entries: [
+        { find: '@', replacement: resolveDir('src') }
+      ]
+    }),
+
+  ]
+}
+config.plugins = [...config.plugins, ...(env === 'development' ? devConfig : proConfig)]
+export default config
+
