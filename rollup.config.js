@@ -2,6 +2,8 @@ import rollupTypescript from 'rollup-plugin-typescript2'
 import commonjs from 'rollup-plugin-commonjs'
 import alias from '@rollup/plugin-alias'
 import copy from 'rollup-plugin-copy'
+import babel from 'rollup-plugin-babel'
+import { DEFAULT_EXTENSIONS } from '@babel/core'
 
 import { devConfig } from './build/roolup.config.dev'
 import { proConfig } from './build/roolup.config.pro'
@@ -41,7 +43,13 @@ let config = {
         { find: '@', replacement: resolveDir('src') }
       ]
     }),
-
+    babel({
+      exclude: 'node_modules/**',
+      extensions: [ // 添加.ts 文件拓展
+        ...DEFAULT_EXTENSIONS,
+        '.ts'
+      ]
+    }),
   ]
 }
 config.plugins = [...config.plugins, ...(env === 'development' ? devConfig : proConfig)]
